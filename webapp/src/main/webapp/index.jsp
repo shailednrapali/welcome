@@ -2,7 +2,7 @@
 <body>
 <h1>Welcome To GetJobSwitch Mastery</h1>
 </body>
-<body style="color:blue;">
+<body style="color:red;">
  <div class="container">
     <label for="uname"><b>Username:    </b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
