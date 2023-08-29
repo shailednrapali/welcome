@@ -1,11 +1,11 @@
-FROM FROM eclipse-temurin:11-jdk-alpine
+FROM adoptopenjdk:11-jdk-hotspot AS build
 
 ARG user=appuser
 ARG group=appuser
 
 RUN addgroup -S appuser && adduser -S $user -G appuser
 
-COPY *.war app.war
+COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
 
 RUN chown -R $user:$user /home/$user/
 
