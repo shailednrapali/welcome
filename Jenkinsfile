@@ -1,16 +1,28 @@
+
 pipeline {
     agent any
-        
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                sh '/usr/share/maven/bin/mvn clean compile package'
+                checkout scm
+            }
+        }
+        
+        stage('Build and Test') {
+            steps {
+                sh 'mvn clean package'
             }
         }
 
-        stage('Dockerhub login') {
+        stage('Build Docker Image') {
             steps {
-                sh 'echo Password@123 |sudo docker login -u wissenbaba --password-stdin'
+                script {
+                    def dockerImage = docker.build("wissenbaba/my-app:${env.BUILD_NUMBER}")
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials-id') {
+                        dockerImage.push()
+                    }
+                }
             }
         }
     }
