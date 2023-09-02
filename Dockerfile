@@ -1,6 +1,6 @@
-#FROM adoptopenjdk:11-jdk-hotspot AS build
+FROM adoptopenjdk:11-jdk-hotspot AS build
 
-FROM eclipse-temurin:17-jdk-alpine
+#FROM eclipse-temurin:17-jdk-alpine
 
 # Create the appuser group
 RUN groupadd appuser
