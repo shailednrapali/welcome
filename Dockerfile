@@ -6,10 +6,10 @@ FROM adoptopenjdk:11-jdk-hotspot AS build
 RUN groupadd appuser
 
 # Create the faltu user, set the home directory, and add to the appuser group
-RUN useradd -m -g appuser faltu
+RUN useradd -m -g appuser docker
 
 USER faltu
-WORKDIR /home/faltu
+WORKDIR /home/docker
 
 COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
 CMD ["java", "-jar", "/home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war"]
