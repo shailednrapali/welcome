@@ -6,7 +6,7 @@ RUN groupadd appuser
 # Create the docker user, set the home directory, and add to the appuser group
 RUN useradd -m -g appuser docker
 
-USER docker
+USER root
 WORKDIR /home/docker
 
 COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
