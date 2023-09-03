@@ -1,12 +1,11 @@
-FROM adoptopenjdk:11-jdk-hotspot AS build
+FROM eclipse-temurin:11-jdk-jammy
+ 
+WORKDIR /app
 
-# Create the appuser group
-RUN groupadd appuser
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
 
-# Create the docker user, set the home directory, and add to the appuser group
-RUN useradd -m -g appuser docker
+COPY src ./src
 
-COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
-CMD ["java", "-jar", "/home/docker/webapp.war"]
-
-EXPOSE 8080
+CMD ["./mvnw", "-Dspring-boot.run.profiles=mysql", "spring-boot:run"
