@@ -1,5 +1,7 @@
 FROM openjdk:11
 
+USER root
+
 COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
 CMD ["java", "-jar", "/home/docker/webapp.war"]
 
