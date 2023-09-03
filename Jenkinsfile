@@ -4,9 +4,13 @@ node{
         git url: 'https://github.com/shailednrapali/welcome.git',branch: 'master'
     }
     
-        stage('Build and Test') {
-               sh 'mvn clean package'
-            }
+    stage("Maven Clean Package"){
+        def mavenHome = tool name: "mvn 3.6.3", type: "maven"
+        def mavenCMD = "${mavenHome}/bin/mvn"
+        sh "${mavenCMD} clean package "
+    }   
+
+    
     stage("Build Docker Image") {
          sh "docker build -t wissenbaba/spc:${buildNumber} ."
     }
