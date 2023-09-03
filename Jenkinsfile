@@ -25,7 +25,6 @@ stage("Build Docker Image") {
      }
       sh "docker push  wissenbaba/spc:${buildNumber} "
     }
-}
         
     }
 }
