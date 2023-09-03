@@ -1,11 +1,6 @@
-FROM eclipse-temurin:11-jdk-jammy
- 
-WORKDIR /app
+FROM adoptopenjdk:11-jdk-hotspot AS build
 
-COPY /usr/share/maven/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
+COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
+CMD ["java", "-jar", "/home/docker/webapp.war"]
 
-COPY src ./src
-
-CMD ["./mvnw", "-Dspring-boot.run.profiles=mysql", "spring-boot:run"
+#EXPOSE 8080
