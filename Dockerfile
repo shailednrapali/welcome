@@ -9,3 +9,5 @@ COPY /webapp/target/webapp.war .
 
 # Command to run when the container starts
 CMD ["java", "-jar", "webapp.war"]
+
+EXPOSE 7070
