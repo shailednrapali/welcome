@@ -2,7 +2,7 @@ FROM eclipse-temurin:11-jdk-jammy
  
 WORKDIR /app
 
-COPY .mvn/ .mvn
+COPY /usr/share/maven/ .mvn
 COPY mvnw pom.xml ./
 RUN ./mvnw dependency:resolve
 
