@@ -5,7 +5,7 @@ FROM openjdk:11
 WORKDIR /app
 
 # Copy the webapp.war file from your local machine into the container
-COPY webapp.war .
+COPY /home/ubuntu/.jenkins/workspace/Second/webapp/target/webapp.war .
 
 # Command to run when the container starts
 CMD ["java", "-jar", "webapp.war"]
