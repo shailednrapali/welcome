@@ -11,7 +11,7 @@ node{
 
     
     stage("Build Docker Image") {
-         sh "docker build -t wissenbaba/spc:${buildNumber} ."
+         sh "docker build -t wissenbaba/welcome:${buildNumber} ."
     }
     
     stage("Docker Login and Push Image in Docker Hub") {
