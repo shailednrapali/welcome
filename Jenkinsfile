@@ -1,10 +1,6 @@
 pipeline {
     agent any
     
-    environment {
-        BUILD_NUMBER = env.BUILD_NUMBER
-    }
-
     stages {
         stage('Git Checkout') {
             steps {
@@ -20,7 +16,10 @@ pipeline {
         
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t wissenbaba/welcome:${BUILD_NUMBER} ."
+                script {
+                    def BUILD_NUMBER = env.BUILD_NUMBER
+                    sh "docker build -t wissenbaba/welcome:${BUILD_NUMBER} ."
+                }
             }
         }
         
@@ -29,7 +28,10 @@ pipeline {
                 withCredentials([string(credentialsId: 'Docker_Hub_PWD', variable: 'Docker_Hub_PWD')]) {
                     sh "docker login -u wissenbaba -p ${Docker_Hub_PWD}"
                 }
-                sh "docker push wissenbaba/welcome:${BUILD_NUMBER}"
+                script {
+                    def BUILD_NUMBER = env.BUILD_NUMBER
+                    sh "docker push wissenbaba/welcome:${BUILD_NUMBER}"
+                }
             }
         }
     }
