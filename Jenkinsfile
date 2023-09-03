@@ -4,10 +4,7 @@ node{
         git url: 'https://github.com/shailednrapali/welcome.git',branch: 'master'
     }
 
-stage("Debug") {
-    sh 'echo "Jenkins workspace: ${WORKSPACE}"'
-}
-    
+   
     stage("Maven Clean Package"){
       sh 'mvn clean package'
     }   
