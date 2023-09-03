@@ -1,14 +1,13 @@
 node{
     def buildNumber = BUILD_NUMBER
     stage("Git CheckOut"){
-        git url: 'https://github.com/kanumuripa/spring-petclinic.git',branch: 'main'
+        git url: 'https://https://github.com/shailednrapali/welcome.git',branch: 'master'
     }
     
-    stage("Maven Clean Package"){
-        def mavenHome = tool name: "mvn 3.9.3", type: "maven"
-        def mavenCMD = "${mavenHome}/bin/mvn"
-        sh "${mavenCMD} clean package "
-    }
+        stage('Build and Test') {
+               sh 'mvn clean package'
+            }
+
     stage("Build Docker Image") {
          sh "docker build -t wissenbaba/spc:${buildNumber} ."
     }
