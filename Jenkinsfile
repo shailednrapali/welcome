@@ -18,7 +18,7 @@ node{
         withCredentials([string(credentialsId: 'Docker_Hub_PWD', variable: 'Docker_Hub_PWD')]) {
            sh "docker login -u wissenbaba -p ${Docker_Hub_PWD}"
      }
-      sh "docker push  wissenbaba/spc:${buildNumber} "
+      sh "docker push  wissenbaba/welcome:${buildNumber} "
     }
 }
           
