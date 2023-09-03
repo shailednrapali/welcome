@@ -20,3 +20,4 @@ Docker Hub") {
       sh "docker push  wissenbaba/spc:${buildNumber} "
     }
 }
+          }
