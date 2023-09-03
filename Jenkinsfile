@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -15,6 +14,8 @@ pipeline {
             }
         }
 
+
+
 stage("Build Docker Image") {
          sh "docker build -t wissenbaba/spc:${buildNumber} ."
     }
@@ -25,6 +26,5 @@ stage("Build Docker Image") {
      }
       sh "docker push  wissenbaba/spc:${buildNumber} "
     }
-        
-    }
+}
 }
