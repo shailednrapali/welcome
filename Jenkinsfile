@@ -7,7 +7,6 @@ node{
         stage('Build and Test') {
                sh 'mvn clean package'
             }
-}
     stage("Build Docker Image") {
          sh "docker build -t wissenbaba/spc:${buildNumber} ."
     }
